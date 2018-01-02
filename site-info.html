@@ -1,0 +1,455 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>管理员－油站信息表</title>
+<link href="css/common.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <!--头部-->
+    <div class="header clearfix">
+        <div class="logo"><img src="images/tit.png"></div>
+        <div class="fright">
+            <span>hello, Yizhong</span>
+            <a href="javascript:;" class="admin">管理员</a>
+            <!--如果是普通用户则渲染如下-->
+            <!-- <a href="javascript:;" class="user">普通用户</a> -->
+            <a href="javascript:;" class="modify">修改密码</a>
+            <a href="javascript:;" class="exit">退出</a>
+        </div>
+    </div>
+
+    <!--主要内容-->
+    <div class="container clearfix">
+        <!--左边菜单栏-->
+        <div class="menu fleft">
+            <ul class="j-menu">
+                <li class="total">
+                    <!--如果是当前页面，则加上active的类-->
+                    <a href="#" class="menu-link active">
+                        <span>总仓备货</span>
+                    </a>
+                </li>
+                <li class="youhua">
+                    <a href="#" class="menu-link ">
+                        <span>品类优化</span>
+                    </a> 
+                </li>
+                <li class="fenpei">
+                   <a href="#" class="menu-link">
+                        <span>商品分配</span>
+                    </a> 
+                </li>
+                <li class="user-manage">
+                   <a href="#" class="menu-link">
+                        <span>用户管理</span>
+                    </a> 
+                </li>
+                <li class="history">
+                   <a href="#" class="menu-link">
+                        <span>历史记录</span>
+                    </a> 
+                </li>
+            </ul>
+            <div class="menu-ctrl fleft">
+                <a href="javascript:;" class="menu-ctrl-btn j-menuctrl"><img src="images/menu-ctrl.png" /></a>
+            </div>
+        </div>
+
+        <!--表格内容区域-->
+        <div class="data-area fright j-right">
+            <div class="bggrey">
+                <!--标题-->
+                <div class="data-tit">管理员－油站信息表</div>
+                <!--主要内容-->
+                <div class="data-main">
+                    <!--上传-->
+                    <div class="uploader-wrap clearfix">
+                        <input type="text" id="file_name" readonly="readonly" value="" >
+                        <a href="javascript:void(0);" class="input">
+                            选择文件
+                            <input type="file" id="file" name="document[file]">
+                        </a>
+                        <div class="import-btn">导入文件</div>
+                    </div>
+                    <!--loading-->
+                    <div class="datat-tb-load" style="display: none;">
+                        <div class="load-img">
+                            <img src="images/loading.gif" alt="">
+                        </div>
+                        <div class="loading-hit">文件处理中，请稍后...</div>
+                    </div>
+                    <!--表格区域 初始应该时隐藏状态 为了方便展示才不隐藏-->
+                    <div class="main-table-area" >
+                        <!--搜索-->
+                        <div class="table-fun-box clearfix">
+                            <label for="siteName">油站名称：</label>
+                            <input type="text" class="search-input">
+                            <input type="button" value="搜索" class="search-btn"> 
+                            <div class="fleft com-button-blue j-showalert" style="margin-left: 20px;" id="j-addSite">新增油站</div>
+                            <div class="filter-btn j-showalert" id="j-filter">筛选</div>
+                          
+                            
+                        </div>
+                        <!--表格-->
+                        <div class="table-wrap">
+                            <table id="example" class="data-tb">
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="alert-bg j-alertbg"></div>
+    <!--筛选弹框开始-->       
+    <div class="filter j-filter-alert">
+        <div class="alert-tit"><span>筛选</span><a href="javascript:;" class="alert-close fright j-close"></a></div>
+        <div class="alert-cont">
+            <ul class="filter-cont">
+                <li>
+                    <label class="filter-first">区域：</label>
+                    <select class="filter-second">
+                        <option value ="">请选择区域</option>
+                        <option value ="area1">雨花台区</option>
+                        <option value ="area2">玄武区</option>
+                    </select>
+                </li>
+                <li>
+                    <label class="filter-first">是否大站：</label>
+                    <select class="filter-second">
+                        <option value ="">请选择是否大站</option>
+                        <option value ="true">是</option>
+                        <option value ="false">否</option>
+                    </select>
+                </li>
+                <li>
+                    <label class="filter-first">路线：</label>
+                    <select class="filter-second">
+                        <option value ="">请选择路线</option>
+                        <option value ="line1">1号线</option>
+                        <option value ="line2">2号线</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+        <div class="alert-foot">
+            <input type="button" value="筛&nbsp;选"/>
+            <input type="button" value="关&nbsp;闭" class="j-close"/>
+        </div>
+    </div>
+    <!--筛选弹框结束-->
+
+    <!--新增油站 弹框开始-->
+    <div class="addSite j-addSite-alert">
+        <div class="alert-tit"><span>新增油站</span><a href="javascript:;" class="alert-close fright j-close"></a></div>
+        <div class="alert-cont">
+            <ul class="addSite-cont">
+                <li>
+                    <label class="addSite-first">油站编号：</label>
+                    <div class="addSite-second">
+                        <input type="text" id="add-siteId">
+                    </div>
+                </li>
+                <li>
+                    <label class="addSite-first">油站名称：</label>
+                    <div class="addSite-second">
+                        <input type="text" id="add-siteName">
+                    </div>
+                </li>
+                <li>
+                    <label class="addSite-first">区域：</label>
+                    <select class="addSite-second">
+                        <option value ="">请选择区域</option>
+                        <option value ="area1">雨花台区</option>
+                        <option value ="area2">玄武区</option>
+                    </select>
+                </li>
+                <li>
+                    <label class="addSite-first">是否大站：</label>
+                    <select class="addSite-second">
+                        <option value ="">请选择是否大站</option>
+                        <option value ="true">是</option>
+                        <option value ="false">否</option>
+                    </select>
+                </li>
+                <li>
+                    <label class="addSite-first">路线：</label>
+                    <select class="addSite-second">
+                        <option value ="">请选择路线</option>
+                        <option value ="line1">1号线</option>
+                        <option value ="line2">2号线</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+        <div class="alert-foot">
+            <input type="button" value="新&nbsp;增"/>
+            <input type="button" value="关&nbsp;闭" class="j-close"/>
+        </div>
+    </div>
+    <!--新增油站 弹框结束-->
+
+    
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/commFun.js"></script>
+    <!--如果用ajax的方式上传表格，则需要引入以下js（选用）-->
+    <!--<script type="text/javascript" src="js/ajaxfileupload.js"></script>-->
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        // 侧边栏 收缩
+        $(".j-menuctrl").toggle(function () {
+            $(".j-menu").hide();
+            $(".j-menuctrl").parent().css("left", "10px");
+            $(".j-right").css({"width":"99%"});
+            $(".j-menuctrl img").attr("src","images/menu-ctrl-open.png");
+        }, function () {
+            $(".j-menu").show();
+            $(".j-menuctrl").parent().css("left", "12%");
+            $(".j-right").css({"width":"87.5%"});
+            $(".j-menuctrl img").attr("src","images/menu-ctrl.png");
+        });
+
+        // 筛选弹框 出现 关闭
+        $(".j-close").click(function () {
+            $(this).parent().parent().hide();
+            $(".j-alertbg").hide();
+        });
+        $(".j-showalert").click(function () {
+            $(".j-alertbg").show();
+            var tag = "." + $(this).attr("id") + "-alert";
+            $(tag).show();
+        });
+
+        // 选择文件事件
+        $('#file').change(function(e){  // 当 id 为 file 的对象发生变化时
+            $('#file_name').val($(this).val());
+        });
+
+        // ajax 上传文件代码如下
+    //     $('.import-btn').click(function(){
+    //         if($('#file').val() == '') {
+    //             CustomAlert('请先选择文件！');
+    //             return false;
+    //         }
+    //         $('.datat-tb-load').show(); // 显示loading
+    //         $.ajaxFileUpload
+    //         ({
+    //             url: '/WebForm.aspx', //用于文件上传的服务器端请求地址
+    //             secureuri: false, //一般设置为false
+    //             fileElementId: 'file', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+    //             dataType: 'json', //返回值类型 一般设置为json
+    //             success: function (data, status) {  //服务器成功响应处理函数
+    //                 if (typeof (data.error) != 'undefined') {
+    //                     if (data.error != '') {
+    //                         CustomAlert(data.error);
+    //                     } else { // 成功后的处理
+    //                         $('.datat-tb-load').hide(); // 隐藏loading
+    //                         $('.main-table-area').show(); // 展现表格区域
+    //                         // todo 表格初始化以及方法绑定 ....
+
+    //                     }
+    //                 }
+    //             },
+    //             error: function (data, status, e) { //服务器响应失败处理函数
+    //                 CustomAlert(e);
+    //             }
+    //         })
+    //         return false;
+    // });
+
+$(function () { 
+    var isEdit = false;
+    //object可以如下初始化表格
+    var table = $('#example').DataTable( {
+        "ajax": 'data/site.json',
+        "autoWidth": false, // 禁止自动计算宽度
+        "searching": false, // 禁用搜索
+        // "ordering":  false, // 禁用排序
+        //使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
+        //data 这里是固定不变的，name，position，salary，office 为你数据里对应的属性
+        columns: [
+            { "data": "siteId", "title":"油站编号","defaultContent":""},
+            { "data": "siteName", "title":"油站名称","defaultContent":""},
+            { "data": "area", "title":"区域","defaultContent":""},
+            { "data": "isMainPot", "title":"是否大站","defaultContent":""},
+            { "data": "line", "title":"线路","defaultContent":""},
+            { "data": null, "title":"操作","defaultContent": "<button class='edit-btn' type='button'>编辑</button>"}
+        ],
+        "language": {
+            "url": "js/chinese.json"
+        },
+    });
+
+    //给行绑定选中事件
+     $('#example tbody').on( 'click', 'tr', function () {
+        
+        if ($(this).hasClass('selected')) {
+           return false;
+        }
+        else {
+            var row = table.$('tr.selected');
+            console.log(isEdit)
+            if(isEdit) { // 如果处于编辑状态 将之前处于编辑状态的数据写回去
+                revoke(row);
+            }
+            row.removeClass('selected');
+            $(this).addClass('selected');
+        }
+    } );
+    //给按钮绑定点击事件
+    // $("#table_id_example_button").click(function () {
+    //     var column1 = table.row('.selected').data().column1;
+    //     var column2 = table.row('.selected').data().column2;
+    //     alert("第一列内容："+column1 + "；第二列内容： " + column2);
+    // });
+
+    // 给表格绑定编辑事件
+    // 油站名称  区域 是否大站 路线 可以修改，其中油站名称是input， 其他的是select
+    var areaOptions = { // 所在地区所对应的键值对 <option value ="area1">玄武区</option>
+        area1: '玄武区',
+        area2: '鼓楼区',
+        area3: '秦淮区',
+        area4: '雨花台区'
+    };
+    var isMainPotOptions = {
+        1: '是',
+        0: '否'
+    }
+    var lineOptions = {
+        line1: '1号线',
+        line2: '2号线',
+        line3: '3号线',
+        line4: '4号线'
+    }
+    $('#example tbody').on('click','tr .edit-btn',function(){
+        isEdit=true;
+        var tds=$(this).parents('tr').children();
+        $.each(tds, function(i,val){
+            if(i==1) { // 给指定的列添加input框
+                var jqob=$(val);
+                var txt=jqob.text();
+                var put=$('<input type="text">');
+                put.val(txt);
+                jqob.html(put);
+            }
+            if (i==2) { // 区域
+                var jqob=$(val);
+                var options = '' 
+                for(var key in areaOptions){
+                    options = options + '<option value ="' + key +'">' + areaOptions[key] +'</option>';
+                }
+                var put = $('<select id="select-area" >' + options + "</select>");
+                jqob.html(put);
+            }
+
+            if (i==3) { // 是否大站
+                var jqob=$(val);
+                var options = '' 
+                for(var key in isMainPotOptions){
+                    options = options + '<option value ="' + key +'">' + isMainPotOptions[key] +'</option>';
+                }
+                var put = $('<select id="select-area" >' + options + "</select>");
+                jqob.html(put);
+            }
+            if (i==4) { // 路线
+                var jqob=$(val);
+                var options = '' 
+                for(var key in lineOptions){
+                    options = options + '<option value ="' + key +'">' + lineOptions[key] +'</option>';
+                }
+                var put = $('<select id="select-area" >' + options + "</select>");
+                jqob.html(put);
+            }
+       });
+       $(this).html('保存');
+       $(this).toggleClass('edit-btn');
+       $(this).toggleClass('save-btn');
+    });
+ 
+    $('#example tbody').on('click','.save-btn',function(){
+        var inputData = []; // input中的值
+        var row=table.row($(this).parents('tr'));
+        var data=row.data();
+        var tds=$(this).parents('tr').children();
+        $.each(tds, function(i,val){
+            var jqob=$(val);
+            if(jqob.has('input').length){
+                var txt=jqob.children('input').val();
+                inputData.push(txt);
+            }
+            if(jqob.has('select').length){
+                var txt=jqob.children('select').val();
+                inputData.push(txt);
+            }
+        });
+        // 提交数据
+        var postData = {
+            id: data.siteId, // 油站编号 可以提交其他的
+            siteName: inputData[0], // 油站名称
+            area: inputData[1], // 地区
+            isMainPot: inputData[2], // 是否大站
+            line: inputData[3] // 路线
+        }
+        $.ajax({
+            "url":"update",
+            "data":postData,
+            "type":"post",
+            "error":function(){ // 服务器处理失败, 将表格对象的数据改为之前的
+                CustomAlert("服务器未正常响应，请重试");
+            },
+            "success":function(response){ // 服务器处理成功，把input变为字符串
+                CustomAlert(response.message);
+                $.each(tds, function(i,val){
+                    var jqob=$(val);
+                    //把input变为字符串
+                    if(jqob.has('input').length){
+                        var txt=jqob.children("input").val();
+                        jqob.html(txt);
+                        table.cell(jqob).data(txt);//修改DataTables对象的数据
+                    }
+                    // select的值 变成字符串
+                    if(jqob.has('select').length){
+                        var txt=jqob.children("select").text();
+                        jqob.html(txt);
+                        table.cell(jqob).data(txt);//修改DataTables对象的数据
+                    }
+                });
+                isEdit=false;
+                $(this).html('编辑');
+                $(this).toggleClass('edit-btn');
+                $(this).toggleClass('save-btn');
+            }
+        });
+        
+    });
+
+    function revoke(row) { // 撤销正在编辑的行的编辑状态
+        var tds = row.children();
+        $.each(tds, function(i,val){
+            var jqob=$(val);
+            //撤销编辑 内容回复
+            if(jqob.has('input').length || jqob.has('select').length){
+                jqob.html(table.cell(jqob).data());
+            }
+            if(jqob.has('button').length){ //按钮
+                var editHtml = "<button class='edit-btn' type='button'>编辑</button>";
+                jqob.html(editHtml);
+            }
+        });
+    }
+
+
+        
+})
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>用户管理</title>
+<link href="css/common.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <!--头部-->
+    <div class="header clearfix">
+        <div class="logo"><img src="images/tit.png"></div>
+        <div class="fright">
+            <span>hello, Yizhong</span>
+            <a href="javascript:;" class="admin">管理员</a>
+            <!--如果是普通用户则渲染如下-->
+            <!-- <a href="javascript:;" class="user">普通用户</a> -->
+            <a href="javascript:;" class="modify">修改密码</a>
+            <a href="javascript:;" class="exit">退出</a>
+        </div>
+    </div>
+
+    <!--主要内容-->
+    <div class="container clearfix">
+        <!--左边菜单栏-->
+        <div class="menu fleft">
+            <ul class="j-menu">
+                <li class="total">
+                    <!--如果是当前页面，则加上active的类-->
+                    <a href="#" class="menu-link">
+                        <span>总仓备货</span>
+                    </a>
+                </li>
+                <li class="youhua">
+                    <a href="#" class="menu-link ">
+                        <span>品类优化</span>
+                    </a> 
+                </li>
+                <li class="fenpei">
+                   <a href="#" class="menu-link">
+                        <span>商品分配</span>
+                    </a> 
+                </li>
+                <li class="user-manage"> 
+                   <a href="#" class="menu-link active">
+                        <span>用户管理</span>
+                    </a> 
+                </li>
+                <li class="history">
+                   <a href="#" class="menu-link">
+                        <span>历史记录</span>
+                    </a> 
+                </li>
+            </ul>
+            <div class="menu-ctrl fleft">
+                <a href="javascript:;" class="menu-ctrl-btn j-menuctrl"><img src="images/menu-ctrl.png" /></a>
+            </div>
+        </div>
+
+        <!--表格内容区域-->
+        <div class="data-area fright j-right">
+            <div class="bggrey">
+                <!--标题-->
+                <div class="data-tit">用户管理</div>
+                <!--主要内容-->
+                <div class="data-main">
+                    <div class="main-table-area" >
+                        <!--搜索-->
+                        <div class="table-fun-box clearfix">
+                            <select class="search-item">
+                                <option value ="1">用户名</option>
+                                <option value ="2">油站名称</option>
+                                <option value="3">油站编号</option>
+                            </select>
+                            <input type="text" class="search-input">
+                            <input type="button" value="搜索" class="search-btn"> 
+                            <div class="fright">
+                                <div class="com-button j-showalert"  style="margin-right:10px;" id="j-addUser">新增用户</div>
+                                <div class="com-button-blue" id="j-deleteUser">删除用户</div>
+                            </div>
+                            
+                        </div>
+                        <!--表格-->
+                        <div class="table-wrap">
+                            <table id="example" class="data-tb user-tb">
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="alert-bg j-alertbg"></div>
+    <!--添加新用户弹框开始-->       
+    <div class="addUser j-addUser-alert">
+        <div class="alert-tit"><span>新增用户</span><a href="javascript:;" class="alert-close fright j-close"></a></div>
+        <div class="alert-cont">
+            <ul class="addUser-cont">
+                <li>
+                    <label class="addUser-first">用户名：</label>
+                    <input type="text" id="add-userName" class="addUser-second">
+                </li>
+                <li>
+                    <label class="addUser-first">油站编号：</label>
+                    <input type="text" id="add-siteId" class="addUser-second">
+                </li>
+                <li>
+                    <label class="addUser-first">油站名称：</label>
+                    <input type="text" id="add-siteName" class="addUser-second">
+                </li>
+                
+            </ul>
+        </div>
+        <div class="alert-foot">
+            <input type="button" value="新&nbsp;增"/>
+            <input type="button" value="关&nbsp;闭" class="j-close"/>
+        </div>
+    </div>
+    <!--添加新用户弹框结束-->
+
+    
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/commFun.js"></script>
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        // 侧边栏 收缩
+        $(".j-menuctrl").toggle(function () {
+            $(".j-menu").hide();
+            $(".j-menuctrl").parent().css("left", "10px");
+            $(".j-right").css({"width":"99%"});
+            $(".j-menuctrl img").attr("src","images/menu-ctrl-open.png");
+        }, function () {
+            $(".j-menu").show();
+            $(".j-menuctrl").parent().css("left", "12%");
+            $(".j-right").css({"width":"87.5%"});
+            $(".j-menuctrl img").attr("src","images/menu-ctrl.png");
+        }); 
+
+        // 新增用户弹框关闭 显示
+        $(".j-close").click(function () {
+            $(this).parent().parent().hide();
+            $(".j-alertbg").hide();
+        });
+        $(".j-showalert").click(function () {
+            $(".j-alertbg").show();
+            var tag = "." + $(this).attr("id") + "-alert";
+            $(tag).show();
+        });
+
+$(function () { 
+    //object可以如下初始化表格
+    var table = $('#example').DataTable( {
+        "ajax": 'data/user.json',
+        "autoWidth": false, // 禁止自动计算宽度
+        "searching": false, // 禁用搜索
+        "ordering":  false, // 禁用排序
+        //使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
+        //data 这里是固定不变的，name，position，salary，office 为你数据里对应的属性
+        columns: [
+            { "data": "userId", "title":"用户编号","defaultContent":""},
+            { "data": "userName", "title":"用户名","defaultContent":""},
+            { "data": "siteId", "title":"油站编号","defaultContent":""},
+            { "data": "siteName", "title":"油站名称","defaultContent":""},
+            { "data": null, "title":"操作","defaultContent": "<a href='javascript:void(0)' class='reset-pwd'>重置密码</a> "}
+        ],
+        "language": {
+            "url": "js/chinese.json"
+        },
+    });
+
+    //给行绑定选中事件
+     $('#example tbody').on( 'click', 'tr', function () {
+        
+        if ($(this).hasClass('selected')) {
+           return false;
+        }
+        else {
+            var row = table.$('tr.selected');
+            row.removeClass('selected');
+            $(this).addClass('selected');
+        }
+    } );
+    // 选中行删除用户
+    $('#j-deleteUser').click(function() {
+        var row = table.$('tr.selected');
+        var rowObj = table.row('.selected');
+        if (row.children().length == 0) {
+            CustomAlert('请先选择需要删除的用户');
+        } else {
+            var data = rowObj.data(); // 一整行数据json 如果只需要用户名 可以这样取 data.userName
+            console.log(data.userName);
+            $.ajax({
+                "url":"deleteUser",
+                "data":data,
+                "type":"post",
+                "error":function(){ // 服务器处理失败，
+                    CustomAlert("服务器未正常响应，请重试");
+                },
+                "success":function(response){ // 服务器处理成功，把表格中的这行数据删掉
+                    CustomAlert('用户删除成功');
+                    rowObj.remove().draw( false ); // 删除表格中的这行数据
+                }
+            });
+        }
+    });
+
+    // 重置密码 因为按钮是is生成的，所以需要用事件绑定
+    $('#example tbody').on( 'click', 'tr .reset-pwd', function () {
+        var row = table.row($(this).parents("tr"));
+        var data = row.data(); // 如果只需要 用户编号 可以只上传 data.userId
+        $.ajax({
+            "url":"resetPwd",
+            "data":data,
+            "type":"post",
+            "error":function(){ // 服务器处理失败，
+                CustomAlert("服务器未正常响应，请重试");
+            },
+            "success":function(response){ // 服务器处理成功，把表格中的这行数据删掉
+                CustomAlert('重置密码成功');
+            }
+        });
+    })
+
+})
+
+    </script>
+</body>
+</html>

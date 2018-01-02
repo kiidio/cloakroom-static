@@ -1,0 +1,417 @@
+/**********系统页的样式**********/
+/****header***/
+.header{
+	height: 80px;
+	background: #349ac0;
+	width: 100%;
+}
+.header .logo{
+	display: inline-block;
+	margin: 17px 0 0 15px;
+	*float: left;
+}
+.header .fright{
+	margin-right: 15px;
+	line-height: 80px;
+	font-size: 14px;
+	color: #fff;
+}
+.header .fright a{
+	color: #fff;
+	padding-left: 20px;
+	background: url('../images/topMenu-sprites.png') no-repeat;
+	margin-left: 10px;
+}
+/*.header .fright .off{
+	background-position: 0 0;
+}
+.header .fright .update-password{
+	background-position: 0 -31px;
+}*/
+.header .fright .exit{
+	background-position: 0 -52px;
+}
+.header .fright .admin{
+	background-position: 0 -1px;
+}
+.header .fright .user{
+	background-position: 0 -26px;
+}
+.header .fright .modify{
+	background-position: 0 -77px;
+}
+
+/**********侧边栏**************/
+.menu{
+	width: 12%;
+}
+.menu .menu-ctrl{
+	position: absolute;
+	width: 10px;
+	height: 100%;
+	height: calc(100% - 80px);
+	top: 80px;
+	left: 12%;
+	background: #f0f0f0;
+}
+.menu .menu-ctrl .menu-ctrl-btn{
+	position: relative;
+	left: -10px;
+	top: 50%;
+	margin-top: -26px;
+}
+.menu ul li{
+	font-size: 16px;
+	height: 40px;
+	background: #f8f8f8;
+	border-bottom: 1px solid #e8e8e8;
+}
+.menu a.menu-link{
+	display: inline-block;
+	line-height: 1.2;
+	height: 21px;
+	margin-top: 10px;
+	margin-left: 30px;
+	text-indent: 30px;
+	color: #333;
+	background: url('../images/leftMenu-sprite.png') no-repeat;
+}
+.menu  a.menu-link:hover{
+	color: #349ac0;
+}
+.menu a.active{
+	color: #349ac0;
+}
+.menu .total .menu-link{
+	background-position: 0 -2px;
+}
+.menu .total .active{
+	background-position: 0 -31px;
+}
+.menu .youhua .menu-link{
+	background-position: 0 -62px;
+}
+.menu .youhua .active{
+	background-position: 0 -90px;
+}
+.menu .fenpei .menu-link{
+	background-position: 0 -132px;
+}
+.menu .fenpei .active{
+	background-position: 0 -164px;
+}
+
+.menu .user-manage .menu-link{
+	background-position: 0 -194px;
+}
+.menu .user-manage .active{
+	background-position: 0 -222px;
+}
+
+.menu .history .menu-link{
+	background-position: 0 -253px;
+}
+.menu .history .active{
+	background-position: 0 -288px;
+}
+
+/***********数据区域*************/
+.data-area{
+	width: 87.5%;
+}
+.bggrey{
+	background: #f0f0f0;
+}
+.data-area .data-tit{
+	font-size: 16px;
+	padding: 10px 0 10px 10px;
+	width: 100%;
+}
+.data-area .data-main{
+	padding: 20px 2% 10px;
+	background: #fff;
+}
+.data-area .uploader-wrap{
+	height: 40px;
+	width: 100%;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #d1d4d9;
+}
+.uploader-wrap #file_name{
+	float: left;
+	width: 300px;
+	height: 30px;
+	border: 1px solid #e8e8e8;
+	margin-right: 10px;
+	line-height: 30px;
+	text-indent: 20px;
+}
+
+.uploader-wrap a.input{
+	display: block;
+	float: left;
+	width: 70px;
+	height: 30px;
+	line-height: 30px;
+	background: #f2f2f2;
+	text-align: center;
+	overflow: hidden;
+	position: relative;
+	color: #333;
+	border: 1px solid #b4b4b4;
+	cursor: pointer;
+}
+
+.uploader-wrap #file{
+	opacity: 0;
+	filter:alpha(opacity=0);
+	height: 70px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.uploader-wrap .import-btn{
+	float: left;
+	margin-left: 20px;
+	width: 70px;
+	height: 30px;
+	line-height: 30px;
+	background: #349ac0;
+	text-align: center;
+	color: #fff;
+	cursor: pointer;
+	border: 1px solid #65b2cf;
+}
+.data-main .datat-tb-load{
+	margin-top: 130px;
+	width: 60%;
+	margin-left: 20%;
+	text-align: center;
+}
+.datat-tb-load .loading-hit{
+	font-size: 18px;
+	color: #349ac0;
+}
+.load-img img{
+	width: 300px;
+	height: auto;
+}
+
+/*******表格样式********/
+.data-main .table-wrap{
+	width: 100%;
+	margin-top: 15px;
+	overflow: scroll;
+}
+
+.data-tb{
+	margin-top: 10px;
+	width: 100%;
+	overflow: scroll;
+}
+.data-tb  td{
+	border:1px solid #c5ccdc;
+	text-align: center;
+	font-size: 12px;
+	color: #333333;
+	white-space: nowrap;
+}
+.data-tb th{
+	border:1px solid #c5ccdc;
+	text-align: center;
+	font-size: 12px;
+	color: #333333;
+	white-space: nowrap;
+	background-color: #f8f8f8;
+	font-weight: normal;
+}
+.user-tb th {
+	background-color: #349ac0;
+	color: #fff;
+}
+
+.data-tb td button{
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+	color: #fff;
+}
+.data-tb td  a{
+	color: #0099ab;
+}
+.data-tb td button.save-btn{
+	background: #ec7807;
+	border: 1px solid #e47406;
+}
+
+.data-tb td button.edit-btn{
+	background: #349ac0;
+	border: 1px solid #65b2cf;
+}
+.com-button {
+	display: inline-block;
+	height: 28px;
+	padding: 0 15px;
+	line-height: 28px;
+	text-align: center;
+	cursor: pointer;
+	background: #f2f2f2;
+	color: #333;
+	border: 1px solid #b4b4b4;
+}
+.com-button-blue{
+	display: inline-block;
+	height: 28px;
+	padding: 0 15px;
+	line-height: 28px;
+	text-align: center;
+	cursor: pointer;
+	background: #349ac0;
+	color: #fff;
+	border: 1px solid #65b2cf;
+}
+
+/*****搜索******/
+.data-main .table-fun-box{
+	margin-top: 15px;
+	width: 100%;
+}
+.table-fun-box .search-item, .table-fun-box .search-input{
+	display: inline-block;
+	float: left;
+	width: 150px;
+	/*height: 28px;*/
+	line-height:18px;
+	padding:5px 0 5px 2px;
+	border: 1px solid #e8e8e8;
+	margin-right: 10px;
+}
+.table-fun-box .search-btn{
+	display: inline-block;
+	float: left;
+	width: 70px;
+	height: 30px;
+	line-height: 30px;
+	background: #f2f2f2;
+	color: #333;
+	border: 1px solid #b4b4b4;
+	cursor: pointer;
+}
+.table-fun-box .filter-btn{
+	float: right;
+	line-height: 30px;
+	color: #0099ab;
+	cursor: pointer;
+	font-size: 14px;
+}
+.table-fun-box label{
+	display: inline-block;
+	float: left;
+	line-height: 30px;
+}
+/**********筛选弹框**********/
+.alert-bg{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: #000000;
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+    left: 0;
+    top: 0;
+    z-index: 999;
+    display: none;
+}
+.filter,.addUser,.addSite{
+    background-color: #ffffff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 9999;
+    display: none;
+}
+.filter, .addUser{
+    width: 340px;
+    height: 260px;
+    margin-top: -130px;
+    margin-left: -170px;
+}
+.addSite{
+	width: 340px;
+    height: 350px;
+    margin-top: -175px;
+    margin-left: -170px;
+}
+.alert-tit{
+    height: 40px;
+    line-height: 40px;
+    color: #ffffff;
+    padding: 0px 10px;
+    background-color: #349ac0;
+}
+.alert-tit span{
+    float:left;
+}
+.alert-close{
+    width: 15px;
+    height: 15px;
+    background: url(../images/sprite1.png) no-repeat 1px -149px;
+    margin-top: 12px;
+}
+.alert-cont{
+    padding: 20px;
+}
+.filter-cont li, .addUser-cont li, .addSite-cont li{
+    padding: 5px 0px;
+}
+.filter-cont li select, .addSite-cont li select{
+    font-family: "microsoft yahei";
+    text-indent: 2px;
+    line-height: 18px;
+    padding: 5px 0;
+}
+.filter-first, .addUser-first, .addSite-first{
+	display: inline-block;
+    width: 100px;
+    text-align: right;
+    margin-right: 10px;
+    line-height: 30px;
+}
+.filter-second, .addUser-second, .addSite-second{
+    width: 150px;
+    display: inline-block;
+}
+.addUser-second , .addSite-second input{
+	text-indent: 2px;
+    height: 28px;
+    border: 1px solid #b8b8b8;
+    line-height: 28px;
+}
+.addSite-second input{
+	width: 100%;
+}
+.alert-foot{
+    text-align: center;
+}
+.alert-foot input{
+    background-color: #f2f2f2;
+    color: #333333;
+    border: 1px solid #b4b4b4;
+    padding: 3px 10px;
+    cursor: pointer;
+    margin: 0px 5px;
+}
+
+.align-center{
+    text-align: center;
+    font-size: 18px;
+}
+/*********Safari td 无边框 bug fix*******/
+_::-webkit-full-page-media, _:future, :root table.dataTable {
+  border-collapse: separate;
+}
+
+
+

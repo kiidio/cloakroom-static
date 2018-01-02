@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>修改密码</title>
+<link href="css/common.css" rel="stylesheet" type="text/css">
+<link href="css/login.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div  class="login_title"><img src="images/title.png" alt=""></div>
+    <div class="login_cnt">
+        <div class="login_form">
+        	<form id="form" action="" type="post" onsubmit="">
+        		<div class="login_div1 j-inputLine">
+                    <label class="placeholder" for="pwd" autocomplete="off">请输您的原密码</label>
+                    <input id="odd-pwd" type="password">
+                </div>
+                <div class="login_div1 j-inputLine">
+                    <label class="placeholder" for="pwd" autocomplete="off">请输入您的新密码</label>
+                    <input id="new-pwd" type="password">
+                </div>
+                <div class="login_div1 j-inputLine">
+                    <label class="placeholder" for="pwd" autocomplete="off">请再次输入新密码</label>
+                    <input id="new-pwd2" type="password">
+                </div>
+                                                     
+                <div class="login_btn"><button type="button" id="modifyPwd-btn">修改密码</button></div>
+                                                    
+        	</form> 
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/commFun.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // 模拟placeholder效果
+            $('.j-inputLine input').focus(function(){
+                var _parent = $(this).parent('.j-inputLine');
+                _parent.find('.placeholder').hide();
+            });
+            $('.j-inputLine input').blur(function(){
+                if($(this).val() == ''){
+                   var _parent = $(this).parent('.j-inputLine');
+                    _parent.find('.placeholder').show(); 
+                }
+            });
+
+
+            //点击修改密码按钮 
+            $('#modifyPwd-btn').click(function(){
+                // 提交数据的验证
+                var oddPwd = $('#odd-pwd').val();
+                var newPwd = $('#new-pwd').val();
+                var newPwd2 = $('#new-pwd2').val();
+                if (oddPwd == '') {
+                    CustomAlert('请输入您的原密码');
+                    return false;
+                }
+                if (newPwd == '') {
+                    CustomAlert('请输入您的新密码');
+                    return false;
+                }
+                if (newPwd2 == '') {
+                    CustomAlert('请再次输入您的新密码');
+                    return false;
+                }
+                if (newPwd != newPwd2) {
+                    CustomAlert('两次输入的新密码不一致');
+                    return false;
+                }
+                $.ajax({
+                "url":"modifyPwd",
+                "data":{
+                    oddPwd: oddPwd,
+                    newPwd: newPwd
+                },
+                "type":"post",
+                "error":function(){ // 服务器处理失败，
+                    CustomAlert("服务器未正常响应，请重试");
+                },
+                "success":function(response){ // 服务器处理成功，调回登陆页
+                    CustomAlert('密码修改成功');
+                    setTimeout(function(){
+                        window.location.href="login.html";
+                    }, 1000)
+                }
+            });
+                
+            })
+        })
+    </script>
+</body>
+</html>

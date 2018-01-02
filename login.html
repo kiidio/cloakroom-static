@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>登录页</title>
+<link href="css/common.css" rel="stylesheet" type="text/css">
+<link href="css/login.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div  class="login_title"><img src="images/title.png" alt=""></div>
+    <div class="login_cnt">
+        <div class="login_form">
+        	<form id="form" action="" type="post" onsubmit="">
+        	   <div class="login_div1 j-inputLine">
+                    <label class="placeholder" for="username" autocomplete="off">请输入您的用户名</label>
+                    <input id="username" type="text" required >
+                </div>
+        		<div class="login_div1 j-inputLine">
+                    <label class="placeholder" for="pwd" autocomplete="off">请输入您的密码</label>
+                    <input id="pwd" type="password">
+                </div>
+        		<!-- <div class="login_div2 j-inputLine">
+                    <label class="placeholder ie6" for="yzm" autocomplete="off">请输入验证码</label>
+                    <input id="yzm" type="text">
+                    <img src="images/check_number.jpg" width="92px" height="38px" class="j-changeYzm" id="yzm-img" alt="">
+                    <span ><a href="javascript:void(0)" class="j-changeYzm">换一个？</a></span>
+                    <div class="clr"></div>
+                </div> -->
+                                                     
+                <div class="login_btn"><button type="button">用户登录</button></div>
+                                                    
+        	</form> 
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/commFun.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // 模拟placeholder效果
+            $('.j-inputLine input').focus(function(){
+                var _parent = $(this).parent('.j-inputLine');
+                _parent.find('.placeholder').hide();
+            });
+            $('.j-inputLine input').blur(function(){
+                if($(this).val() == ''){
+                   var _parent = $(this).parent('.j-inputLine');
+                    _parent.find('.placeholder').show(); 
+                }
+            });
+
+            // 更换验证码
+            // $('.j-changeYzm').click(function(){ 
+            //     // 生成随机数 加在验证码的图片后面
+            //     var randomNum = Math.random();
+            //     var yzmUrl = $('#yzm-img').attr('src').split('?')[0];
+            //     $('#yzm-img').attr('src', yzmUrl+'?'+randomNum);
+            // });
+
+            //点击提交按钮 
+            $('.login_btn button').click(function(){
+                // 提交数据的验证
+                var username = $('#username').val();
+                var pwd = $('#pwd').val();
+                // var yzm = $('#yzm').val();
+                if (username == '') {
+                    CustomAlert('您还未输入用户名');
+                    return false;
+                }
+                if (pwd == '') {
+                    CustomAlert('您还未输入密码');
+                    return false;
+                }
+                // if (yzm == '') {
+                //     CustomAlert('您还未输入验证码');
+                //     return false;
+                // }
+                // if (yzm.length != 4) { // 验证码长度不为4
+                //     CustomAlert('您输入的验证码长度有误');
+                //     return false;
+                // }
+                // 提交表单todo
+            })
+        })
+    </script>
+</body>
+</html>
