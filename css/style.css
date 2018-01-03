@@ -272,6 +272,29 @@
 	color: #fff;
 	border: 1px solid #65b2cf;
 }
+.main-table-area .confirm-box{
+	margin-top: 15px;
+	width: 100%;
+	text-align: center;
+}
+.main-table-area .confirm-btn{
+	display: inline-block;
+	text-align: center; 
+	cursor: pointer;
+	background: #f1682d;
+	border: none;
+	height: 45px;
+	line-height: 45px;
+	width: 120px;
+	color:#fff;
+	font-size: 18px;
+	border-radius: 5px;
+}
+.confirm-box .already{
+	color: #868686;
+	background: #d8d8d8;
+	cursor: default;
+}
 
 /*****搜索******/
 .data-main .table-fun-box{
@@ -300,7 +323,7 @@
 	cursor: pointer;
 }
 .table-fun-box .filter-btn{
-	float: right;
+	display: inline-block;
 	line-height: 30px;
 	color: #0099ab;
 	cursor: pointer;
