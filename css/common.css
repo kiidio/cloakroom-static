@@ -108,3 +108,75 @@ ul li, ol li, dl li {
     *position: relative;  
     *top: -50%; 
 }
+/*****自定义弹窗 弹窗 表单********/
+.popForm{
+    background-color: #ffffff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 340px;
+    height: 350px;
+    margin-top: -175px;
+    margin-left: -170px; 
+    z-index: 9999;
+    display: none;
+}
+.popForm .alert-tit{
+    height: 40px;
+    line-height: 40px;
+    color: #ffffff;
+    padding: 0px 10px;
+    background-color: #349ac0;
+}
+.popForm .alert-tit span{
+    float:left;
+}
+.popForm .alert-close{
+    width: 15px;
+    height: 15px;
+    background: url(../images/sprite1.png) no-repeat 1px -149px;
+    margin-top: 12px;
+}
+.popForm .alert-cnt{
+    padding: 20px;
+}
+.cont-list li{
+    padding: 5px 0;
+    width: 100%;
+}
+.cont-list .form-label{
+    width: 30%;
+    display: inline-block;
+    float: left;
+    text-align: right;
+    line-height: 30px;
+}
+.cont-list .form-item{
+    float: left;
+    margin-left: 10px;
+    width: 60%;
+    height: 30px;
+}
+.cont-list .form-item input, .cont-list .form-item select{
+    width: 90%;
+    text-indent: 2px;
+    height: 28px;
+    border: 1px solid #b8b8b8;
+    line-height: 28px;
+}
+.popForm .alert-foot{
+    text-align: center;
+}
+.popForm  .alert-foot input{
+    background-color: #f2f2f2;
+    color: #333333;
+    border: 1px solid #b4b4b4;
+    padding: 3px 10px;
+    cursor: pointer;
+    margin: 0px 5px;
+}
+
+
+
+
+

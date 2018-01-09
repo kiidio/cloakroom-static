@@ -102,6 +102,63 @@
         </div>
     </div>
 
+    <!--自定义弹框样式-->
+    <!--
+     1. 默认大小 width: 340px; height: 350px;大概可以装下五行
+     2. 如果需要设置宽高，请加入如下行内样式，margin-top为-(height/2);margin-left为-(width/2)
+     3. 宽度最小340px, 本demo是基于340px实现的最佳效果
+     4. 默认是display:none; 为了方便展示，才让他dispaly:block
+    -->
+    <div class="popForm" style="display:block;width:340px;height:350px;margin-top:-175px;margin-left:-170px;">
+        <div class="alert-tit">
+            <span>这是标题</span>
+            <a href="javascript:;" class="alert-close fright j-form-close"></a>
+        </div>
+        <div class="alert-cnt">
+            <ul class="cont-list">
+                <li class="clearfix">
+                    <label class="form-label">油站名称：</label>
+                    <div class="form-item">
+                        <input type="text">
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label class="form-label">区域：</label>
+                    <div class="form-item">
+                        <select>
+                            <option value ="">请选择区域</option>
+                            <option value ="area1">雨花台区</option>
+                            <option value ="area2">玄武区</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label class="form-label">油站编号：</label>
+                    <div class="form-item">
+                        <input type="text">
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label class="form-label">油站编号：</label>
+                    <div class="form-item">
+                        <input type="text">
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <label class="form-label">油站编号：</label>
+                    <div class="form-item">
+                        <input type="text">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="alert-foot">
+            <input type="button" value="确&nbsp;定">
+            <input type="button" value="关&nbsp;闭" class="j-form-close">
+        </div>
+        
+    </div>
+
 
     
     <script type="text/javascript" src="js/jquery.js"></script>
