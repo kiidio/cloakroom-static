@@ -175,7 +175,13 @@ ul li, ol li, dl li {
     cursor: pointer;
     margin: 0px 5px;
 }
-
+.cont-list .form-item .input-third-line{
+    display: inline-block;
+    width: 57%;
+}
+.form-item .com-button{
+    display: inline-block;
+}
 
 
 
